@@ -1,0 +1,90 @@
+### Health Check
+GET http://localhost:5000
+
+### Create Song 1
+POST http://localhost:5000/api/songs
+Content-Type: application/json
+
+{
+  "title": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "album": "A Night at the Opera",
+  "genre": "rock"
+}
+
+### Create Song 2
+POST http://localhost:5000/api/songs
+Content-Type: application/json
+
+{
+  "title": "Imagine",
+  "artist": "John Lennon",
+  "album": "Imagine",
+  "genre": "rock"
+}
+
+### Create Song 3
+POST http://localhost:5000/api/songs
+Content-Type: application/json
+
+{
+  "title": "Billie Jean",
+  "artist": "Michael Jackson",
+  "album": "Thriller",
+  "genre": "pop"
+}
+
+### Create Song 4
+POST http://localhost:5000/api/songs
+Content-Type: application/json
+
+{
+  "title": "Thriller",
+  "artist": "Michael Jackson",
+  "album": "Thriller",
+  "genre": "pop"
+}
+
+### Create Song 5
+POST http://localhost:5000/api/songs
+Content-Type: application/json
+
+{
+  "title": "Take Five",
+  "artist": "Dave Brubeck",
+  "album": "Time Out",
+  "genre": "jazz"
+}
+
+### Get All Songs
+GET http://localhost:5000/api/songs
+
+### Get All Songs with Pagination
+GET http://localhost:5000/api/songs?page=1&limit=3
+
+### Filter by Genre
+GET http://localhost:5000/api/songs?genre=rock
+
+### Filter by Artist
+GET http://localhost:5000/api/songs?artist=Michael Jackson
+
+### Search Songs
+GET http://localhost:5000/api/songs?search=thriller
+
+### Get Song by ID (replace with actual ID)
+GET http://localhost:5000/api/songs/YOUR_SONG_ID_HERE
+
+### Update Song (replace with actual ID)
+PUT http://localhost:5000/api/songs/YOUR_SONG_ID_HERE
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "genre": "pop"
+}
+
+### Delete Song (replace with actual ID)
+DELETE http://localhost:5000/api/songs/YOUR_SONG_ID_HERE
+
+### Get Statistics
+GET http://localhost:5000/api/stats
