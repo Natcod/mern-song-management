@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import songRoutes from './routes/songRoutes';
-import statsRoutes from './routes/statsRoutes';
-import { errorHandler } from './middlewares/errorHandler';
-import { notFound } from './middlewares/notFound';
+import songRoutes from './routes/songRoutes.js';
+import statsRoutes from './routes/statsRoutes.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFound } from './middlewares/notFound.js';
 
 const app: Application = express();
 
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check route
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({
     success: true,
     message: 'Song Management API is running',

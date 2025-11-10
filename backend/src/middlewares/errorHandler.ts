@@ -1,21 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
-import { ApiError } from '../utils/ApiError';
-import { env } from '../config/env';
+import { ApiError } from '../utils/ApiError.js';
+import { env } from '../config/env.js';
 
 export const errorHandler = (
   err: Error | ApiError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   let statusCode = 500;
   let message = 'Internal Server Error';
-  let isOperational = false;
 
   if (err instanceof ApiError) {
     statusCode = err.statusCode;
     message = err.message;
-    isOperational = err.isOperational;
   } else if (err.name === 'ValidationError') {
     statusCode = 400;
     message = err.message;

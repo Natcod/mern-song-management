@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { statsService } from '../services/statsService';
-import { ApiResponse } from '../utils/ApiResponse';
+import { statsService } from '../services/statsService.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
 
 export const statsController = {
   // Get all statistics
   async getStatistics(
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> {

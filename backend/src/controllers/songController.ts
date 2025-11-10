@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { songService, SongInput, QueryOptions } from '../services/songService';
-import { ApiResponse } from '../utils/ApiResponse';
-import { ApiError } from '../utils/ApiError';
+import { songService, SongInput, QueryOptions } from '../services/songService.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
+import { ApiError } from '../utils/ApiError.js';
 
 export const songController = {
   // Create a new song

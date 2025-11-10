@@ -1,5 +1,5 @@
-import { Song, ISong } from '../models/Song';
-import { ApiError } from '../utils/ApiError';
+import { Song, ISong } from '../models/Song.js';
+import { ApiError } from '../utils/ApiError.js';
 
 export interface SongInput {
   title: string;
