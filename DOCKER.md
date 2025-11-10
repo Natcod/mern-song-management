@@ -4,20 +4,19 @@ This project is fully dockerized for easy deployment.
 
 ## 📦 What's Included
 
-- **MongoDB** - Database service
-- **Backend** - Node.js + Express + TypeScript API
+- **Backend** - Node.js + Express + TypeScript API (connects to MongoDB Atlas)
 
 ## 🚀 Quick Start
 
-Run the backend with MongoDB:
+Run the backend:
 
 ```bash
 docker-compose up -d
 ```
 
 This will start:
-- MongoDB on `localhost:27017`
 - Backend API on `localhost:5000`
+- Connected to MongoDB Atlas (same database as local development)
 
 ## 🛠️ Docker Commands
 
@@ -47,12 +46,8 @@ docker-compose down -v
 ### View Logs
 
 ```bash
-# All services
-docker-compose logs -f
-
-# Specific service
+# Backend logs
 docker-compose logs -f backend
-docker-compose logs -f mongodb
 ```
 
 ### Restart Services
@@ -67,21 +62,15 @@ docker-compose restart backend
 
 ## 🔍 Service Details
 
-### MongoDB
-- **Image**: mongo:7.0
-- **Port**: 27017
-- **Username**: admin
-- **Password**: password123
-- **Database**: song_management
-- **Data Persistence**: Volume `mongodb_data`
-
 ### Backend
 - **Port**: 5000
 - **Build**: Production-ready build
+- **Database**: MongoDB Atlas (cloud)
 - **Features**: 
   - TypeScript compiled to JavaScript
   - Alpine-based for smaller image size
   - All dependencies included
+  - Connects to same database as local development
 
 ## 📝 Environment Variables
 
@@ -89,9 +78,11 @@ The docker-compose file sets these automatically:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://admin:password123@mongodb:27017/song_management?authSource=admin
-NODE_ENV=production (or development)
+MONGO_URI=mongodb+srv://songadmin:Songadmin@atlas123@songcluster.hbyktwi.mongodb.net/?appName=SongCluster
+NODE_ENV=production
 ```
+
+**Note**: The MongoDB URI is configured to connect to MongoDB Atlas, ensuring Docker uses the same database as local development.
 
 ## 🧪 Testing the Dockerized API
 
@@ -137,15 +128,17 @@ sudo lsof -ti:5000 | xargs kill -9
 
 ### Database Connection Issues
 
-Check if MongoDB is running:
+Check if backend is running:
 ```bash
 docker-compose ps
 ```
 
-View MongoDB logs:
+View backend logs:
 ```bash
-docker-compose logs mongodb
+docker-compose logs backend
 ```
+
+Ensure MongoDB Atlas is accessible and credentials are correct.
 
 ### Rebuild After Code Changes (Production)
 
@@ -155,10 +148,10 @@ docker-compose build --no-cache backend
 docker-compose up -d
 ```
 
-### Access MongoDB Shell
+### Access Backend Container
 
 ```bash
-docker exec -it song-mongodb mongosh -u admin -p password123 --authenticationDatabase admin
+docker exec -it song-backend sh
 ```
 
 ## 📊 Container Management
@@ -196,7 +189,6 @@ docker system prune -a
 ## 📦 Image Sizes
 
 - **Backend**: ~180MB (Alpine-based)
-- **MongoDB**: ~700MB
 
 ## 🎯 Next Steps
 

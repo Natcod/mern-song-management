@@ -1,22 +1,6 @@
 version: '3.8'
 
 services:
-  # MongoDB Service
-  mongodb:
-    image: mongo:7.0
-    container_name: song-mongodb
-    restart: unless-stopped
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password123
-      MONGO_INITDB_DATABASE: song_management
-    volumes:
-      - mongodb_data:/data/db
-    networks:
-      - song-network
-
   # Backend Service
   backend:
     build:
@@ -28,17 +12,5 @@ services:
       - "5000:5000"
     environment:
       PORT: 5000
-      MONGO_URI: mongodb://admin:password123@mongodb:27017/song_management?authSource=admin
+      MONGO_URI: mongodb+srv://songadmin:Songadmin%40atlas123@songcluster.hbyktwi.mongodb.net/?appName=SongCluster
       NODE_ENV: production
-    depends_on:
-      - mongodb
-    networks:
-      - song-network
-
-volumes:
-  mongodb_data:
-    driver: local
-
-networks:
-  song-network:
-    driver: bridge
